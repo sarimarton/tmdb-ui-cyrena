@@ -1,0 +1,24 @@
+
+/* Fine adjustments on uk-thumbnav */
+.ResultsContainer .uk-thumbnav > * > ::after {
+  background: rgba(255,255,255,0.2);
+}
+
+.ResultsContainer__thumbnail-holder,
+.ResultsContainer .uk-thumbnav > * > ::after {
+  height: 169px;
+}
+
+.ResultsContainer .uk-thumbnav > * > :focus::after,
+.ResultsContainer .uk-thumbnav > * > :hover::after {
+  background-color: transparent;
+}
+
+.ResultsContainer__caption {
+  width: 300px;
+}
+
+.ResultsContainer .uk-thumbnav > * > :focus,
+.ResultsContainer .uk-thumbnav > * > :hover {
+  text-decoration: none;
+}

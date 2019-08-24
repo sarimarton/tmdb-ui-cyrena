@@ -1,0 +1,52 @@
+{
+  "name": "tmdb-ui-powercycle",
+  "version": "1.0.0",
+  "description": "A simple TMDb UI",
+  "private": true,
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --port 1236",
+    "build": "parcel build --no-cache index.html --port 1236",
+    "build-dev": "NODE_ENV=development && export NODE_ENV && parcel build --no-cache --no-minify index.html",
+    "serve": "cd dist && npx http-server -p",
+    "postinstall": "patch-package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarimarton/tmdb-ui-powercycle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarimarton/tmdb-ui-powercycle/issues"
+  },
+  "homepage": "https://github.com/sarimarton/tmdb-ui-powercycle#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "^10.0.2",
+    "parcel": "^1.12.3",
+    "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "@cycle/history": "^7.2.0",
+    "@cycle/http": "^15.1.0",
+    "@cycle/react": "^2.3.0",
+    "@cycle/react-dom": "^2.3.0",
+    "@cycle/run": "^5.2.0",
+    "@cycle/state": "^1.2.0",
+    "@cycle/time": "^0.19.0",
+    "patch-package": "^6.1.2",
+    "powercycle": "^0.19.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "xstream": "^11.11.0",
+    "xstream-sample": "^1.0.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}

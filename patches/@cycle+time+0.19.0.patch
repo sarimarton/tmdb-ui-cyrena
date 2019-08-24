@@ -1,0 +1,15 @@
+diff --git a/node_modules/@cycle/time/lib/es6/src/time-driver.js b/node_modules/@cycle/time/lib/es6/src/time-driver.js
+index c393d4a..c6b1421 100644
+--- a/node_modules/@cycle/time/lib/es6/src/time-driver.js
++++ b/node_modules/@cycle/time/lib/es6/src/time-driver.js
+@@ -6,8 +6,8 @@ import { makeThrottle } from './throttle';
+ import { makeAnimationFrames } from './animation-frames';
+ import { makeThrottleAnimation } from './throttle-animation';
+ import { runVirtually } from './run-virtually';
+-import * as requestAnimationFrame from 'raf';
+-import * as now from 'performance-now';
++import requestAnimationFrame from 'raf';
++import now from 'performance-now';
+ function popAll(array) {
+     var poppedItems = [];
+     while (array.length > 0) {
