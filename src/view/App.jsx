@@ -1,5 +1,5 @@
 import withPower from 'powercycle'
-import { $, $if, pickLens } from 'powercycle/util'
+import { $, $if, pickLens, mergeWith } from 'powercycle/util'
 import { pickBy, compact } from 'powercycle/fp'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
@@ -19,8 +19,7 @@ export function App (sources) {
 
   const urlLens = {
     get: state =>
-      [
-        '',
+      '/' + [
         ...compact([
           state.searchPhrase && `search/${state.searchPhrase}`,
           state.movieId && `movie/${state.movieId}`
@@ -59,7 +58,12 @@ export function App (sources) {
         </ul>
       </div>
 
-      <div className='App__view-container'>
+      <div className='App__view-container' onClick={{
+        state: ev$ => ev$.filter(event =>
+          event.target.classList.contains('App__view') ||
+          event.target.classList.contains('App__view-container')
+        ).mapTo(mergeWith({ movieId: null }))
+      }}>
         <div className='App__view uk-margin-top-small uk-margin-left uk-margin-right' data-page='home'>
           <HomePage />
         </div>

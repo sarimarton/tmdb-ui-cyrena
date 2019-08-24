@@ -1,5 +1,5 @@
 import withPower, { powercycle } from 'powercycle'
-import { $, $and, $not, If } from 'powercycle/util'
+import { $, $and, $not, $or, If, $if } from 'powercycle/util'
 import { get, identity } from 'powercycle/fp'
 import xs from 'xstream'
 
@@ -17,8 +17,6 @@ export function MovieDetailsPage (sources) {
         url: sources.util.getFullUrl(`/movie/${movieId}`),
         category: 'details'
       }))
-      // Sadly we need this workaround to make loading work when landing on the movie page.
-      .compose(sources.Time.delay(100))
 
   const detailsResponse$ =
     sources.HTTP
@@ -68,11 +66,16 @@ export function MovieDetailsPage (sources) {
 
   return [
     <div>
-      <h1>{$.cache.movieTitle}</h1>
+      <h1 if={movieId$}>
+        <If cond={$.cache.movieTitle} then={$.cache.movieTitle}
+          else={<If cond={isLoading$} then='' else={$(details$).title} />}
+        />
+      </h1>
+
       <div if={isLoading$}>Loading...</div>
       <div if={errorMessage$}>Network error: {errorMessage$}</div>
 
-      <div if={$and(movieId$, $not(isLoading$))} className='MovieDetailsPage'>
+      <div if={$and(details$, credits$, $not(isLoading$))} className='MovieDetailsPage'>
         <div className='MovieDetailsPage__img-container uk-margin-right' style={{ float: 'left ' }}>
           <img src={details$.map($ => `http://image.tmdb.org/t/p/w342${$.poster_path}`)} alt='' />
         </div>
@@ -106,13 +109,4 @@ export function MovieDetailsPage (sources) {
     </div>,
     { HTTP: http$ }
   ]
-
-  // const goBackIntention$ =
-  //   sources.react
-  //     .select('.App__view, .App__view-container')
-  //     .events('click')
-  //     .filter(event =>
-  //       event.target.classList.contains('App__view') ||
-  //       event.target.classList.contains('App__view-container')
-  //     )
 }
