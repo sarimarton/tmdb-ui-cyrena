@@ -34,7 +34,7 @@ export function MovieDetailsPage (sources) {
 
   return [
     <div>
-      <h1 if={movieId$}>
+      <h1 if={movieId$.startWith(false)}>
         <If cond={$.cache.movieTitle} then={$.cache.movieTitle}
           else={<If cond={details.isLoading$} then='' else={$(details.content$).title} />}
         />
