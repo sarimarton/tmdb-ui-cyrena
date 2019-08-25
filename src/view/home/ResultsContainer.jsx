@@ -1,5 +1,4 @@
 import withPower from 'powercycle'
-import xs from 'xstream'
 import { $, collection, mergeWith } from 'powercycle/util'
 
 import './ResultsContainer.css'
