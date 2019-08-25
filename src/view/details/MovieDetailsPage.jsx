@@ -1,6 +1,6 @@
 import withPower, { powercycle } from 'powercycle'
-import { $, $and, $not, $or, If, $if, request } from 'powercycle/util'
-import { get, identity, uniqueId } from 'powercycle/fp'
+import { $, $and, $not, If, request } from 'powercycle/util'
+import { get, identity } from 'powercycle/fp'
 import xs from 'xstream'
 
 import './MovieDetailsPage.css'

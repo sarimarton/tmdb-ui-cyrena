@@ -2,8 +2,8 @@ import withPower from 'powercycle'
 import xs from 'xstream'
 
 export function SearchBar (sources) {
-  const value$ = xs
-    .merge(
+  const value$ =
+    xs.merge(
       sources.state.stream,
       sources.sel['input'].change['target.value']
     )

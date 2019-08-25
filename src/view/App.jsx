@@ -57,7 +57,7 @@ export function App (sources) {
       <div className='App__header uk-width-1-1'>
         <ul className='uk-breadcrumb uk-width-1-1'>
           <li className='uk-width-1-1'>
-            <a className='uk-width-1-1 uk-padding-small' onClick={ev => prev => ({ ...prev, movieId: null })}>
+            <a className='uk-width-1-1 uk-padding-small' onClick={ev => mergeWith({ movieId: null })}>
               <span className='uk-margin-small-right uk-icon' uk-icon='icon:chevron-left' />
               Back
             </a>
