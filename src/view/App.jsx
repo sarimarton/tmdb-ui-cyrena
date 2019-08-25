@@ -1,6 +1,6 @@
 import withPower from 'powercycle'
 import { $, $if, pickLens, mergeWith } from 'powercycle/util'
-import { pickBy, compact } from 'powercycle/fp'
+import { pickBy, compact, get } from 'powercycle/fp'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
 import './App.css'
@@ -30,8 +30,8 @@ export function App (sources) {
       ...state,
       ...pickBy()(
         url.match(
-          /^(?:\/search\/(?<searchPhrase>[^/]+))?(\/movie\/(?<movieId>\d+))?$/
-        )?.groups
+          /^\/$|^(?:\/search\/(?<searchPhrase>[^/]+))?(\/movie\/(?<movieId>\d+))?$/
+        ).groups
       )
     })
   }
