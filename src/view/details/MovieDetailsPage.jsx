@@ -1,6 +1,6 @@
 import withPower, { powercycle } from 'powercycle'
-import { $, $and, $not, $or, If, $if } from 'powercycle/util'
-import { get, identity } from 'powercycle/fp'
+import { $, $and, $not, $or, If, $if, request } from 'powercycle/util'
+import { get, identity, uniqueId } from 'powercycle/fp'
 import xs from 'xstream'
 
 import './MovieDetailsPage.css'
@@ -11,96 +11,64 @@ export function MovieDetailsPage (sources) {
       .map(get('movieId'))
       .filter(identity)
 
-  const detailsRequest$ =
-    movieId$
-      .map(movieId => ({
-        url: sources.util.getFullUrl(`/movie/${movieId}`),
-        category: 'details'
-      }))
+  const details = request(
+    movieId$.map($ => sources.util.getFullUrl(`/movie/${$}`)),
+    sources
+  )
 
-  const detailsResponse$ =
-    sources.HTTP
-      .select('details')
-      .map(resp$ => resp$.replaceError(err => xs.of(err)))
-      .flatten()
-
-  const details$ =
-    detailsResponse$
-      .filter(resp => !(resp instanceof Error))
-      .map(resp => JSON.parse(resp.text))
-      .remember()
-
-  const creditsRequest$ =
-    movieId$
-      .map(movieId => ({
-        url: sources.util.getFullUrl(`/movie/${movieId}/credits`),
-        category: 'credits'
-      }))
-
-  const creditsResponse$ =
-    sources.HTTP
-      .select('credits')
-      .map(resp$ => resp$.replaceError(err => xs.of(err)))
-      .flatten()
-
-  const credits$ =
-    creditsResponse$
-      .filter(resp => !(resp instanceof Error))
-      .map(resp => JSON.parse(resp.text))
-      .remember()
-
-  const isLoading$ = xs.merge(
-    detailsRequest$.mapTo(true),
-    detailsResponse$.mapTo(false)
-  ).startWith(false)
+  const credits = request(
+    movieId$.map($ => sources.util.getFullUrl(`/movie/${$}/credits`)),
+    sources
+  )
 
   const errorMessage$ =
-    xs.merge(detailsResponse$, creditsResponse$)
-      .filter(resp => resp instanceof Error)
-      .startWith('')
+    xs.merge(
+      details.errorMessage$,
+      credits.errorMessage$
+    )
 
   const http$ = xs.merge(
-    detailsRequest$,
-    creditsRequest$
+    details.request$,
+    credits.request$
   )
 
   return [
     <div>
       <h1 if={movieId$}>
         <If cond={$.cache.movieTitle} then={$.cache.movieTitle}
-          else={<If cond={isLoading$} then='' else={$(details$).title} />}
+          else={<If cond={details.isLoading$} then='' else={$(details.content$).title} />}
         />
       </h1>
 
-      <div if={isLoading$}>Loading...</div>
+      <div if={details.isLoading$}>Loading...</div>
       <div if={errorMessage$}>Network error: {errorMessage$}</div>
 
-      <div if={$and(details$, credits$, $not(isLoading$))} className='MovieDetailsPage'>
+      <div if={$and(details.content$, credits.content$, $not(details.isLoading$))} className='MovieDetailsPage'>
         <div className='MovieDetailsPage__img-container uk-margin-right' style={{ float: 'left ' }}>
-          <img src={details$.map($ => `http://image.tmdb.org/t/p/w342${$.poster_path}`)} alt='' />
+          <img src={details.content$.map($ => `http://image.tmdb.org/t/p/w342${$.poster_path}`)} alt='' />
         </div>
         <dl className='uk-description-list'>
           <dt>Popularity</dt>
-          <dd>{$(details$).vote_average}</dd>
+          <dd>{$(details.content$).vote_average}</dd>
           <dt>Overview</dt>
-          <dd>{$(details$).overview}</dd>
+          <dd>{$(details.content$).overview}</dd>
           <dt>Genres</dt>
-          <dd>{$(details$).genres.map(get('name')).join(', ')}</dd>
+          <dd>{$(details.content$).genres.map(get('name')).join(', ')}</dd>
           <dt>Starring</dt>
-          <dd>{$(credits$).cast.slice(0, 3).map(get('name')).join(', ')}</dd>
+          <dd>{$(credits.content$).cast.slice(0, 3).map(get('name')).join(', ')}</dd>
           <dt>Languages</dt>
-          <dd>{$(details$).spoken_languages.map(get('name')).join(', ')}</dd>
+          <dd>{$(details.content$).spoken_languages.map(get('name')).join(', ')}</dd>
           <dt>Original Title</dt>
-          <dd>{$(details$).original_title}</dd>
+          <dd>{$(details.content$).original_title}</dd>
           <dt>Release Date</dt>
-          <dd>{$(details$).release_date}</dd>
-          <If cond={$(details$).imdb_id}>
+          <dd>{$(details.content$).release_date}</dd>
+          <If cond={$(details.content$).imdb_id}>
             <dt>IMDb URL</dt>
             <dd>
-              <a href={details$.map(details =>
+              <a href={details.content$.map(details =>
                 `https://www.imdb.com/title/${details.imdb_id}/`
               )}>
-                https://www.imdb.com/title/{$(details$).imdb_id}/
+                https://www.imdb.com/title/{$(details.content$).imdb_id}/
               </a>
             </dd>
           </If>
