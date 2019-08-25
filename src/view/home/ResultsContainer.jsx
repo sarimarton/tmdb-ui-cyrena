@@ -1,18 +1,17 @@
 import withPower from 'powercycle'
 import xs from 'xstream'
-import { $, $map, $not, collection, mergeWith, Debug } from 'powercycle/util'
+import { $, collection, mergeWith } from 'powercycle/util'
 
 import './ResultsContainer.css'
 
-export function ResultsContainer (sources) {
-
+export function ResultsContainer ({ props: { isLoading$, errorMessage$, thumbnails$ } }) {
   return (
     <div className='ResultsContainer'>
-      <div if={sources.props.isLoading$}>Loading...</div>
-      <div if={sources.props.errorMessage$}>Network error: {sources.props.errorMessage$}</div>
+      <div if={isLoading$}>Loading...</div>
+      <div if={errorMessage$}>Network error: {errorMessage$}</div>
 
       <ul className='uk-thumbnav'>
-        {collection($(sources.props.thumbnails$).results, {
+        {collection($(thumbnails$).results, {
           // keyProp: 'id',
           itemCmp: ({ props: { item$, initialValues } }) =>
             <li className='uk-margin-bottom' if={$(item$).backdrop_path}>

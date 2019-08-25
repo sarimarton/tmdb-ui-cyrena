@@ -7,12 +7,6 @@ import { App } from './view/App.jsx'
 
 import withPower, { makeDOMDriver } from 'powercycle'
 
-function main (sources) {
-  return (
-    <App />
-  )
-}
-
 const drivers = {
   react: makeDOMDriver(document.getElementById('root')),
   HTTP: makeHTTPDriver(),
@@ -25,4 +19,4 @@ const drivers = {
   })
 }
 
-run(withPower(main), drivers)
+run(withPower(App), drivers)

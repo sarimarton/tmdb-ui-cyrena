@@ -45,6 +45,13 @@ export function App (sources) {
     .compose(dropRepeats())
     .drop(1) // the initial one is just the one which got loaded
 
+  const backToHomeClickHandler = {
+    state: ev$ => ev$.filter(event =>
+      event.target.classList.contains('App__view') ||
+      event.target.classList.contains('App__view-container')
+    ).mapTo(mergeWith({ movieId: null }))
+  }
+
   return [
     <div className='App uk-light uk-background-secondary' data-activepage={activePage$}>
       <div className='App__header uk-width-1-1'>
@@ -58,12 +65,7 @@ export function App (sources) {
         </ul>
       </div>
 
-      <div className='App__view-container' onClick={{
-        state: ev$ => ev$.filter(event =>
-          event.target.classList.contains('App__view') ||
-          event.target.classList.contains('App__view-container')
-        ).mapTo(mergeWith({ movieId: null }))
-      }}>
+      <div className='App__view-container' onClick={backToHomeClickHandler}>
         <div className='App__view uk-margin-top-small uk-margin-left uk-margin-right' data-page='home'>
           <HomePage />
         </div>
