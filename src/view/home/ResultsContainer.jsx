@@ -12,7 +12,7 @@ export function ResultsContainer ({ props: { isLoading$, errorMessage$, thumbnai
 
       <ul className='uk-thumbnav'>
         {collection($(thumbnails$).results, {
-          // keyProp: 'id',
+          keyProp: 'id',
           itemCmp: ({ props: { item$, initialValues } }) =>
             <li className='uk-margin-bottom' if={$(item$).backdrop_path}>
               <a className='ResultsContainer__result-item' onClick={ev => mergeWith({
