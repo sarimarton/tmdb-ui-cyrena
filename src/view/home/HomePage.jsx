@@ -9,7 +9,7 @@ import './HomePage.css'
 import { SearchBar } from './SearchBar.jsx'
 import { ResultsContainer } from './ResultsContainer.jsx'
 
-import { changeQuery, selectMovie } from '../AppState.js'
+import { changeQuery, selectMovie } from '../../state.js'
 
 export function HomePage (sources) {
   const isDiscoveryMode =
