@@ -1,44 +1,20 @@
 import withPower from 'powercycle'
-import { $, $if, pickLens, mergeWith } from 'powercycle/util'
-import { pickBy, compact } from 'powercycle/fp'
+import { $, $if, pickLens, withTransactionalState } from 'powercycle/util'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
+import { urlLens } from './util.js'
+import reducer, { changeUrl, goHome } from './AppState.js'
 import './App.css'
 
 import { HomePage } from './home/HomePage.jsx'
 import { MovieDetailsPage } from './details/MovieDetailsPage.jsx'
 
-export function App (sources) {
-  const initialState = {
-    searchPhrase: '',
-    movieId: null,
-    cache: {}
-  }
+export const App = withTransactionalState(reducer, sources => {
+  const activePage$ =
+    $if($.movieId, 'item', 'home')
 
-  const activePage$ = $if($.movieId, 'item', 'home')
-
-  const urlLens = {
-    get: state =>
-      '/' + [
-        ...compact([
-          state.searchPhrase && `search/${state.searchPhrase}`,
-          state.movieId && `movie/${state.movieId}`
-        ])
-      ].join('/'),
-
-    set: (state, url) => ({
-      ...state,
-      ...pickBy()(
-        url.match(
-          /^\/$|^(?:\/search\/(?<searchPhrase>[^/]+))?(\/movie\/(?<movieId>\d+))?$/
-        ).groups
-      )
-    })
-  }
-
-  const reducer$ = sources.history.map(history => state =>
-    urlLens.set(state || initialState, history.pathname)
-  )
+  const action$ = sources.history
+    .map(history => changeUrl(history.pathname))
 
   const navigation$ = sources.state.stream
     .map(urlLens.get)
@@ -46,10 +22,12 @@ export function App (sources) {
     .drop(1) // the initial one is just the one which got loaded
 
   const backToHomeClickHandler = {
-    state: ev$ => ev$.filter(event =>
-      event.target.classList.contains('App__view') ||
-      event.target.classList.contains('App__view-container')
-    ).mapTo(mergeWith({ movieId: null }))
+    state: ev$ => ev$
+      .filter(event =>
+        event.target.classList.contains('App__view') ||
+        event.target.classList.contains('App__view-container')
+      )
+      .mapTo(goHome())
   }
 
   return [
@@ -57,7 +35,7 @@ export function App (sources) {
       <div className='App__header uk-width-1-1'>
         <ul className='uk-breadcrumb uk-width-1-1'>
           <li className='uk-width-1-1'>
-            <a className='uk-width-1-1 uk-padding-small' onClick={ev => mergeWith({ movieId: null })}>
+            <a className='uk-width-1-1 uk-padding-small' onClick={ev => ['goHome']}>
               <span className='uk-margin-small-right uk-icon' uk-icon='icon:chevron-left' />
               Back
             </a>
@@ -75,8 +53,8 @@ export function App (sources) {
       </div>
     </div>,
     {
-      state: reducer$,
+      state: action$,
       history: navigation$
     }
   ]
-}
+})

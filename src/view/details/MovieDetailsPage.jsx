@@ -1,4 +1,4 @@
-import withPower, { powercycle } from 'powercycle'
+import withPower from 'powercycle'
 import { $, $and, $not, If, request } from 'powercycle/util'
 import { get, identity } from 'powercycle/fp'
 import xs from 'xstream'

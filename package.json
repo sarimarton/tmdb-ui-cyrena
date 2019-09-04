@@ -40,7 +40,7 @@
     "@cycle/state": "^1.2.0",
     "@cycle/time": "^0.19.0",
     "patch-package": "^6.1.2",
-    "powercycle": "^0.19.5",
+    "powercycle": "^0.20.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "xstream": "^11.11.0",

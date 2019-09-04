@@ -3,12 +3,13 @@ import xs from 'xstream'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
 import { get, not } from 'powercycle/fp'
-import { If, $, pickLens, request } from 'powercycle/util'
+import { If, $, request } from 'powercycle/util'
 
 import './HomePage.css'
-
 import { SearchBar } from './SearchBar.jsx'
 import { ResultsContainer } from './ResultsContainer.jsx'
+
+import { changeQuery, selectMovie } from '../AppState.js'
 
 export function HomePage (sources) {
   const isDiscoveryMode =
@@ -29,7 +30,6 @@ export function HomePage (sources) {
     sources.state.stream
       .filter(not(isDiscoveryMode))
       .map(get('searchPhrase'))
-      .compose(dropRepeats())
       .map(searchPhrase =>
         sources.util.getFullUrl(`/search/movie?query=${searchPhrase}`)
       ),
@@ -58,11 +58,16 @@ export function HomePage (sources) {
     search.request$
   )
 
+  const searchPhrase$ =
+    sources.state.stream
+      .map($ => $.searchPhrase)
+      .compose(dropRepeats())
+
   return [
     <div className='HomePage'>
       <h1>TMDb UI – Home</h1>
 
-      <SearchBar scope='searchPhrase' title='Search for a Title:' />
+      <SearchBar value$={searchPhrase$} title='Search for a Title:' onChange={changeQuery} />
 
       <h3 className='uk-heading-bullet uk-margin-remove-top'>
         <If cond={isDiscoveryMode$}
@@ -71,8 +76,7 @@ export function HomePage (sources) {
         />
       </h3>
 
-      <ResultsContainer
-        scope={{ state: pickLens('movieId', 'cache') }}
+      <ResultsContainer onSelect={selectMovie}
         {...{ thumbnails$, isLoading$, errorMessage$ }}
       />
     </div>,
