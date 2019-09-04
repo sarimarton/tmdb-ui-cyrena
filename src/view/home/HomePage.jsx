@@ -30,6 +30,7 @@ export function HomePage (sources) {
     sources.state.stream
       .filter(not(isDiscoveryMode))
       .map(get('searchPhrase'))
+      .compose(dropRepeats())
       .map(searchPhrase =>
         sources.util.getFullUrl(`/search/movie?query=${searchPhrase}`)
       ),
