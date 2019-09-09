@@ -18,11 +18,11 @@ import XHRAdapter from '@pollyjs/adapter-xhr'
 import FetchAdapter from '@pollyjs/adapter-fetch'
 import RESTPersister from '@pollyjs/persister-rest'
 
-Polly.register(XHRAdapter)
-Polly.register(FetchAdapter)
-Polly.register(RESTPersister)
-
 if (process.env.NODE_ENV === 'development') {
+  Polly.register(XHRAdapter)
+  Polly.register(FetchAdapter)
+  Polly.register(RESTPersister)
+
   window.polly = new Polly('tmdbui', {
     adapters: ['xhr', 'fetch'],
     persister: 'rest'
