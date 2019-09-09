@@ -43,6 +43,7 @@
     "powercycle": "^0.20.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "uikit": "^3.2.0",
     "xstream": "^11.11.0",
     "xstream-sample": "^1.0.0"
   },

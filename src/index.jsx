@@ -6,6 +6,13 @@ import { makeHashHistoryDriver } from '@cycle/history'
 
 import { App } from './view/App.jsx'
 
+import 'uikit/dist/css/uikit.css'
+
+import UIkit from 'uikit/dist/js/uikit.js'
+import UIkitIcons from 'uikit/dist/js/uikit-icons.js'
+
+UIkitIcons(UIkit)
+
 import withPower, { makeDOMDriver } from 'powercycle'
 
 const drivers = {
