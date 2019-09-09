@@ -13,21 +13,21 @@ import UIkitIcons from 'uikit/dist/js/uikit-icons.js'
 
 import withPower, { makeDOMDriver } from 'powercycle'
 
-import { Polly } from '@pollyjs/core'
-import XHRAdapter from '@pollyjs/adapter-xhr'
-import FetchAdapter from '@pollyjs/adapter-fetch'
-import RESTPersister from '@pollyjs/persister-rest'
-
-if (process.env.NODE_ENV === 'development') {
-  Polly.register(XHRAdapter)
-  Polly.register(FetchAdapter)
-  Polly.register(RESTPersister)
-
-  window.polly = new Polly('tmdbui', {
-    adapters: ['xhr', 'fetch'],
-    persister: 'rest'
-  })
-}
+// import { Polly } from '@pollyjs/core'
+// import XHRAdapter from '@pollyjs/adapter-xhr'
+// import FetchAdapter from '@pollyjs/adapter-fetch'
+// import RESTPersister from '@pollyjs/persister-rest'
+//
+// if (process.env.NODE_ENV === 'development') {
+//   Polly.register(XHRAdapter)
+//   Polly.register(FetchAdapter)
+//   Polly.register(RESTPersister)
+//
+//   window.polly = new Polly('tmdbui', {
+//     adapters: ['xhr', 'fetch'],
+//     persister: 'rest'
+//   })
+// }
 
 const drivers = {
   react: makeDOMDriver(document.getElementById('root')),
