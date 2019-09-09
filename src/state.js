@@ -20,7 +20,8 @@ const reducers = {
       cache: { movieTitle: record.title }
     }),
 
-  goHome: () => reducers.selectMovie({ id: null })
+  goHome: () =>
+    reducers.selectMovie({ id: null })
 }
 
 export const changeQuery = makeAction('changeQuery')

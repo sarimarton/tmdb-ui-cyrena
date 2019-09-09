@@ -10,7 +10,6 @@ export function SearchBar (sources) {
 
   const stateUpdate$ = value$
     .compose(sources.Time.debounce(250))
-    // .compose(dropRepeats())
     .map(val => ['change', val])
 
   return [
