@@ -5,7 +5,7 @@
   min-height: 497px;
 }
 
-.MovieDetailsPage dt {
+.MovieDetailsPage .uk-description-list > dt {
   color: rgba(255, 255, 255, .3);
 }
 
