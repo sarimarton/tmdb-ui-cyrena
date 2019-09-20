@@ -18,7 +18,9 @@ import XHRAdapter from '@pollyjs/adapter-xhr'
 import FetchAdapter from '@pollyjs/adapter-fetch'
 import RESTPersister from '@pollyjs/persister-rest'
 
-if (process.env.NODE_ENV === 'development' && !/\.csb\.app$/.test(self.location.hostname)) {
+if (process.env.NODE_ENV === 'development' &&
+  !/\.csb\.app$/.test(global.location.hostname)
+) {
   Polly.register(XHRAdapter)
   Polly.register(FetchAdapter)
   Polly.register(RESTPersister)

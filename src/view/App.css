@@ -35,7 +35,6 @@ html, body, #root {
 }
 
 .App__view-container {
-  flex: 1 1 auto;
   align-self: auto;
 
   position: relative;
