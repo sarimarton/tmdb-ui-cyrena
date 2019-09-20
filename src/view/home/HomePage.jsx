@@ -45,15 +45,18 @@ export function HomePage (sources) {
     )
     .remember()
 
-  const isLoading$ = xs.merge(
-    discovery.isLoading$,
-    search.isLoading$
-  )
+  const isLoading$ = xs
+    .combine(isDiscoveryMode$, discovery.isLoading$, search.isLoading$.startWith(false))
+    .map(([isDiscoveryMode, discoveryIsLoading, searchIsLoading]) =>
+      isDiscoveryMode ? discoveryIsLoading : searchIsLoading
+    )
+    .remember()
 
-  const errorMessage$ = xs.merge(
-    discovery.errorMessage$,
-    search.errorMessage$
-  )
+  const errorMessage$ = xs
+    .combine(isDiscoveryMode$, discovery.errorMessage$, search.errorMessage$)
+    .map(([isDiscoveryMode, discoveryErrorMessage, searchErrorMessage]) =>
+      isDiscoveryMode ? discoveryErrorMessage : searchErrorMessage
+    )
 
   const http$ = xs.merge(
     discovery.request$,

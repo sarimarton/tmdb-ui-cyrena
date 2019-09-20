@@ -16,14 +16,17 @@ export function ResultsContainer ({ props: { isLoading$, errorMessage$, thumbnai
 
       <ul className={isLoading$.map($ => 'uk-thumbnav ' + ($ ? 'loading' : ''))}>
         {collection($(thumbnails$).results, {
-          itemKey: 'backdrop_path',
+          itemKey: 'id',
           itemCmp: ({ props: { item$ } }) =>
-            <li className='uk-margin-bottom' if={$(item$).backdrop_path}>
+            <li className='uk-margin-bottom'>
               <a className='ResultsContainer__result-item' onClick={{
                 state: ev$ => sample(item$)(ev$).map(item => ['select', item])
               }}>
                 <div className='ResultsContainer__thumbnail-holder'>
-                  <img src={item$.map(item => `http://image.tmdb.org/t/p/w300${item.backdrop_path}`)} />
+                  <img
+                    if={$(item$).backdrop_path}
+                    src={item$.map(item => `http://image.tmdb.org/t/p/w300${item.backdrop_path}`)}
+                  />
                 </div>
                 <div className='ResultsContainer__caption uk-text-small uk-text-muted'>
                   {$(item$).title}
