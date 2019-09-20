@@ -21,7 +21,7 @@ export function SearchBar (sources) {
           uk-icon={value$.map(val => `icon:${val ? 'close' : 'search'}`)}
           onClick={ev => ['change', '']}
         />
-        <input sel='input' className='SearchBar__input uk-input' value={value$} />
+        <input sel='input' className='SearchBar__input uk-input' value={value$} autoFocus />
       </div>
     </>,
     { state: stateUpdate$ }
