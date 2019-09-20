@@ -18,6 +18,7 @@ export function HomePage (sources) {
   const isDiscoveryMode$ =
     sources.state.stream
       .map(isDiscoveryMode)
+      .compose(dropRepeats())
 
   const discovery = request(
     sources.state.stream

@@ -22,3 +22,7 @@
 .ResultsContainer .uk-thumbnav > * > :hover {
   text-decoration: none;
 }
+
+.ResultsContainer .uk-thumbnav.loading {
+  display: none;
+}
