@@ -22,8 +22,6 @@ export function MovieDetailsPage(sources) {
 
   const http$ = xs.merge(details.request$, credits.request$)
 
-  console.log('mican');
-  
   return [
     <div>
       <h1 if={movieId$.startWith(false)}>
