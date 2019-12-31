@@ -10,11 +10,12 @@ export function SearchBar (sources) {
 
   const stateUpdate$ = value$
     .compose(sources.Time.debounce(250))
+    // @ts-ignore
     .map(val => ['change', val])
 
   return [
     <>
-      <legend className='uk-legend'>{sources.props.title}</legend>
+      <legend className='uk-legend'>{sources?.props?.title}</legend>
       <div className='SearchBar uk-inline uk-margin-bottom'>
         <a
           className='uk-form-icon uk-form-icon-flip'

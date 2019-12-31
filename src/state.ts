@@ -1,5 +1,5 @@
 import { mergeWith, makeAction } from 'powercycle/util'
-import { urlLens } from './util.js'
+import { urlLens } from './util'
 
 const initialState = {
   searchPhrase: '',

@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "ES2018",
+    "moduleResolution": "node"
+  }
+}

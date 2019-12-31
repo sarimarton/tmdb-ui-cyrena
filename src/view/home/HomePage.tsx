@@ -6,10 +6,10 @@ import { get, not } from 'powercycle/fp'
 import { If, $, request } from 'powercycle/util'
 
 import './HomePage.css'
-import { SearchBar } from './SearchBar.jsx'
-import { ResultsContainer } from './ResultsContainer.jsx'
+import { SearchBar } from './SearchBar'
+import { ResultsContainer } from './ResultsContainer'
 
-import { changeQuery, selectMovie } from '../../state.js'
+import { changeQuery, selectMovie } from '../../state'
 
 export function HomePage (sources) {
   const isDiscoveryMode =

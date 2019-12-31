@@ -2,12 +2,12 @@ import withPower from 'powercycle'
 import { $, $if, pickLens, withTransactionalState } from 'powercycle/util'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
-import { urlLens } from '../util.js'
-import reducer, { changeUrl, goHome } from '../state.js'
+import { urlLens } from '../util'
+import reducer, { changeUrl, goHome } from '../state'
 import './App.css'
 
-import { HomePage } from './home/HomePage.jsx'
-import { MovieDetailsPage } from './details/MovieDetailsPage.jsx'
+import { HomePage } from './home/HomePage'
+import { MovieDetailsPage } from './details/MovieDetailsPage'
 
 export const App = withTransactionalState(reducer, sources => {
   const activePage$ =

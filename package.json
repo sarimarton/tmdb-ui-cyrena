@@ -23,14 +23,11 @@
   },
   "homepage": "https://github.com/sarimarton/tmdb-ui-powercycle#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-    "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-pipeline-operator": "^7.7.7",
     "@pollyjs/cli": "^2.6.0",
-    "babel-eslint": "^10.0.2",
     "parcel": "^1.12.4",
-    "standard": "^12.0.1"
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "@cycle/history": "^7.2.0",
@@ -51,8 +48,5 @@
     "uikit": "^3.2.0",
     "xstream": "^11.11.0",
     "xstream-sample": "^1.0.0"
-  },
-  "standard": {
-    "parser": "babel-eslint"
   }
 }
