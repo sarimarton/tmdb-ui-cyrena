@@ -1,4 +1,4 @@
-import withPower from 'powercycle'
+import React from 'powercycle'
 import xs from 'xstream'
 import dropRepeats from 'xstream/extra/dropRepeats'
 

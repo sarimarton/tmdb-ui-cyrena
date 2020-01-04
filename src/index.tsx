@@ -15,7 +15,7 @@ import withPower, { makeDOMDriver } from 'powercycle'
 
 // Workaround of TS not yet supporting custom jsx pragma for fragments
 // @ts-ignore 2339
-window.React = { createElement: withPower.pragma, Fragment: withPower.Fragment }
+// window.React = { createElement: withPower.pragma, Fragment: withPower.Fragment }
 
 import { Polly } from '@pollyjs/core'
 import XHRAdapter from '@pollyjs/adapter-xhr'

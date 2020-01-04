@@ -1,7 +1,6 @@
-import withPower from 'powercycle'
+import React from 'powercycle'
 import { $, collection, $not, $or } from 'powercycle/util'
 import sample from 'xstream-sample'
-import xs from 'xstream'
 
 import './ResultsContainer.css'
 

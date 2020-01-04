@@ -42,7 +42,7 @@
     "@pollyjs/adapter-xhr": "^2.6.2",
     "@pollyjs/core": "^2.6.2",
     "@pollyjs/persister-rest": "^2.6.2",
-    "powercycle": "^0.20.0",
+    "powercycle": "^0.20.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "uikit": "^3.2.0",

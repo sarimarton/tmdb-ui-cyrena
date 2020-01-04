@@ -1,4 +1,4 @@
-import withPower from 'powercycle'
+import React from 'powercycle'
 import { $, $if, pickLens, withTransactionalState } from 'powercycle/util'
 import dropRepeats from 'xstream/extra/dropRepeats'
 

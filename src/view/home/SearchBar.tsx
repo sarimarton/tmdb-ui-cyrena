@@ -1,4 +1,4 @@
-import withPower from 'powercycle'
+import React from 'powercycle'
 import xs from 'xstream'
 
 export function SearchBar (sources) {
