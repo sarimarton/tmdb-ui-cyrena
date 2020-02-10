@@ -42,7 +42,7 @@
     "@pollyjs/core": "^2.6.3",
     "@pollyjs/persister-rest": "^2.6.3",
     "patch-package": "^6.2.0",
-    "powercycle": "^0.20.2",
+    "powercycle": "^0.20.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "uikit": "^3.3.0",
