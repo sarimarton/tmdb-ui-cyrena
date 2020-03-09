@@ -1,11 +1,11 @@
 {
-  "name": "tmdb-ui-powercycle",
+  "name": "tmdb-ui-cyrena",
   "version": "1.0.0",
   "description": "A simple TMDb UI",
   "private": true,
   "main": "index.html",
   "scripts": {
-    "start": "pid=$(npx polly listen > /dev/null & echo $! ); parcel index.html --no-cache --port 1236; kill $pid",
+    "start": "pid=$(npx polly listen > /dev/null & echo $! ); parcel index.html --no-autoinstall --no-cache --port 1236; kill $pid",
     "build": "parcel build --no-cache index.html",
     "build-dev": "NODE_ENV=development && export NODE_ENV && parcel build --no-cache --no-minify index.html",
     "serve": "cd dist && npx http-server -p",
@@ -16,15 +16,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sarimarton/tmdb-ui-powercycle.git"
+    "url": "git+https://github.com/sarimarton/tmdb-ui-cyrena.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sarimarton/tmdb-ui-powercycle/issues"
+    "url": "https://github.com/sarimarton/tmdb-ui-cyrena/issues"
   },
-  "homepage": "https://github.com/sarimarton/tmdb-ui-powercycle#readme",
+  "homepage": "https://github.com/sarimarton/tmdb-ui-cyrena#readme",
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-pipeline-operator": "^7.8.3",
@@ -37,8 +37,8 @@
     "@cycle/history": "^7.4.0",
     "@cycle/http": "^15.3.0",
     "@cycle/isolate": "^5.2.0",
-    "@cycle/react": "^2.6.0",
-    "@cycle/react-dom": "^2.3.0",
+    "@cycle/react": "^2.7.0",
+    "@cycle/react-dom": "^2.4.0",
     "@cycle/run": "^5.4.0",
     "@cycle/state": "^1.4.0",
     "@cycle/time": "^0.19.0",
@@ -47,9 +47,10 @@
     "@pollyjs/core": "^2.6.3",
     "@pollyjs/persister-rest": "^2.6.3",
     "@types/react": "^16.9.22",
+    "cyrena": "^0.20.5",
     "patch-package": "^6.2.0",
     "powercycle": "^0.20.5",
-    "react": "^16.12.0",
+    "react": "^16.13.0",
     "react-dom": "^16.12.0",
     "uikit": "^3.3.0",
     "xstream": "^11.11.0",
