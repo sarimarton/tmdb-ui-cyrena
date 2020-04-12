@@ -30,7 +30,7 @@
     "@babel/plugin-proposal-pipeline-operator": "^7.8.3",
     "@pollyjs/cli": "^2.6.3",
     "parcel": "^1.12.4",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.4",
     "typescript": "^3.8.2"
   },
   "dependencies": {
@@ -47,7 +47,6 @@
     "@pollyjs/core": "^2.6.3",
     "@pollyjs/persister-rest": "^2.6.3",
     "@types/react": "^16.9.22",
-    "cyrena": "^0.20.5",
     "patch-package": "^6.2.0",
     "powercycle": "^0.20.5",
     "react": "^16.13.0",
