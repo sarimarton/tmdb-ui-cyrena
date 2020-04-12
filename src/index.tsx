@@ -4,7 +4,6 @@ import { makeHTTPDriver } from '@cycle/http'
 import { timeDriver } from '@cycle/time'
 import { makeHashHistoryDriver } from '@cycle/history'
 
-
 import { App } from './view/App'
 
 import 'uikit/dist/css/uikit.css'
