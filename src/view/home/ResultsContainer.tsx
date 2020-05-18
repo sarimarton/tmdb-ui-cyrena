@@ -1,5 +1,5 @@
-import React from 'powercycle'
-import { $, collection, $not, $or } from 'powercycle/util'
+import React from 'cyrena'
+import { $, collection, $not, $or } from 'cyrena/util'
 import sample from 'xstream-sample'
 
 import './ResultsContainer.css'

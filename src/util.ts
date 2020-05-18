@@ -1,4 +1,4 @@
-import { pickBy, compact } from 'powercycle/fp'
+import { pickBy, compact } from 'cyrena/fp'
 
 export const urlLens = {
   get: state =>

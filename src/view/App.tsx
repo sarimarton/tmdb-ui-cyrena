@@ -1,5 +1,5 @@
-import React from 'powercycle'
-import { $, $if, pickLens, withTransactionalState } from 'powercycle/util'
+import React from 'cyrena'
+import { $, $if, pickLens, withTransactionalState } from 'cyrena/util'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
 import { urlLens } from '../util'

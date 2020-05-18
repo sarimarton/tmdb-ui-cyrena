@@ -1,4 +1,4 @@
-import { mergeWith, makeAction } from 'powercycle/util'
+import { mergeWith, makeAction } from 'cyrena/util'
 import { urlLens } from './util'
 
 const initialState = {

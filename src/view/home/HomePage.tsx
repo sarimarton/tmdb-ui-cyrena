@@ -1,9 +1,9 @@
-import React from 'powercycle'
+import React from 'cyrena'
 import xs from 'xstream'
 import dropRepeats from 'xstream/extra/dropRepeats'
 
-import { get, not } from 'powercycle/fp'
-import { If, $, request } from 'powercycle/util'
+import { get, not } from 'cyrena/fp'
+import { If, $, request } from 'cyrena/util'
 
 import './HomePage.css'
 import { SearchBar } from './SearchBar'

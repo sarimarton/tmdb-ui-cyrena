@@ -1,4 +1,4 @@
-import React from 'powercycle'
+import React from 'cyrena'
 import xs from 'xstream'
 
 export function SearchBar (sources) {

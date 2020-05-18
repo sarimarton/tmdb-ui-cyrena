@@ -11,7 +11,7 @@ import 'uikit/dist/css/uikit.css'
 import UIkit from 'uikit/dist/js/uikit.js'
 import UIkitIcons from 'uikit/dist/js/uikit-icons.js'
 
-import withPower, { makeDOMDriver } from 'powercycle'
+import withPower, { makeDOMDriver } from 'cyrena'
 
 // Workaround of TS not yet supporting custom jsx pragma for fragments
 // @ts-ignore 2339

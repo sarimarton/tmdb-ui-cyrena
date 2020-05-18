@@ -1,6 +1,6 @@
-import React from 'powercycle'
-import { $, $and, $not, If, request } from 'powercycle/util'
-import { get, identity } from 'powercycle/fp'
+import React from 'cyrena'
+import { $, $and, $not, If, request } from 'cyrena/util'
+import { get, identity } from 'cyrena/fp'
 import xs from 'xstream'
 
 import './MovieDetailsPage.css'
